@@ -26,6 +26,8 @@ import express, { Router } from "express";
 const app = express();
 
 const PORT = 8000;
+app.use(express.json());
+
 import taskRouter from "./src/routers/taskRouters.js";
 app.use("/api/v1/task", taskRouter);
 
