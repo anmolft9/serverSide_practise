@@ -3,5 +3,9 @@ GET http://localhost:8000/
 
 
 ###fetch all task
-GET http://localhost:8000/api/v1/task/
+GET http://localhost:8000/api/v1/task/3
+Content-Type: application/json
+
+###post task
+POST http://localhost:8000/api/v1/task/
 Content-Type: application/json
