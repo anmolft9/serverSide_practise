@@ -1,25 +1,52 @@
-import express from "express";
+// import express from "express";
 
+// const app = express();
+
+// const PORT = 8000;
+
+// app.use(express.json());
+
+// //routers
+// import taskRouter from "./src/routers/taskRouters.js";
+// app.use("api/v1/task", taskRouter);
+
+// app.use("/", (req, res) => {
+//   res.json({
+//     status: "success",
+//     message: "Welcome",
+//   });
+// });
+
+// app.listen(PORT, (error) => {
+//   error && console.log(error);
+//   console.log(`server connected on http://localhost:${PORT}`);
+// });
+
+import express, { Router } from "express";
 const app = express();
 
 const PORT = 8000;
-
-app.use(express.json());
-
-//routers
-import taskRouters from "./src/routers/taskRouters.js";
-app.use("api/v1/task", taskRouters);
-
-console.log(taskRouters);
+import taskRouter from "./src/routers/taskRouters.js";
+app.use("/api/v1/task", taskRouter);
 
 app.use("/", (req, res) => {
   res.json({
     status: "success",
-    message: "Welcome",
+    message: "you have reached not to do api",
   });
+});
+
+app.use((error, req, res, next) => {
+  console.log(error, "error");
+  const status = error.status || 500;
+  res.status(status).json({
+    status: "error",
+    message: error.message,
+  });
+  // writing file system to log error
 });
 
 app.listen(PORT, (error) => {
   error && console.log(error);
-  console.log(`server connected on http://localhost:${PORT}`);
+  console.log(`Server is running on port http://localhost:${PORT}`);
 });
