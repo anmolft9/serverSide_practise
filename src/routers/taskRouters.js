@@ -48,4 +48,31 @@ router.post("/", (req, res, next) => {
   }
 });
 
+router.patch("/", (req, res, next) => {
+  try {
+    res.json({
+      status: "success",
+      message: "patch route",
+    });
+  } catch (error) {
+    error.status = 500;
+    next(error);
+  }
+});
+
+router.delete("/", (req, res, next) => {
+  const { _id } = req.body;
+  let afterDeletion = fakeDB.filter((item) => item._id !== +_id);
+  try {
+    res.json({
+      status: "success",
+      message: "delete route",
+      afterDeletion,
+    });
+  } catch (error) {
+    error.status = 500;
+    next(error);
+  }
+});
+
 export default router;

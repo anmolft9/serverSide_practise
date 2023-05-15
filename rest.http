@@ -14,3 +14,16 @@ Content-Type: application/json
    "task":"blowjob",
    "hr": 1
 }
+
+
+###Patch  task
+PATCH http://localhost:8000/api/v1/task/
+Content-Type: application/json
+
+###Delete
+DELETE http://localhost:8000/api/v1/task/
+Content-Type: application/json
+
+{
+    "_id": 1
+}
