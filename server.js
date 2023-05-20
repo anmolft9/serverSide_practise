@@ -4,9 +4,15 @@ const app = express();
 const PORT = 8000;
 app.use(express.json());
 
+//Database connection
+import { dbConnection } from "./src/config/dbConfig.js";
+dbConnection();
+
+//other end points
 import taskRouter from "./src/routers/taskRouters.js";
 app.use("/api/v1/task", taskRouter);
 
+//root end point
 app.use("/", (req, res) => {
   res.json({
     status: "success",
