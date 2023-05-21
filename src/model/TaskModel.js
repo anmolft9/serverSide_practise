@@ -3,3 +3,9 @@ import TaskSchema from "./TaskSchema.js";
 export const insertTask = (taskObj) => {
   return TaskSchema(taskObj).save();
 };
+export const getTask = () => {
+  return TaskSchema.find();
+};
+export const getSingleTask = (_id) => {
+  return TaskSchema.findById(_id);
+};

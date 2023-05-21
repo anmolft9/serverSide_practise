@@ -3,7 +3,7 @@ GET http://localhost:8000/
 
 
 ###fetch all task
-GET http://localhost:8000/api/v1/task/3
+GET http://localhost:8000/api/v1/task/
 Content-Type: application/json
 
 ###post task
@@ -11,8 +11,8 @@ POST http://localhost:8000/api/v1/task
 Content-Type: application/json
 
 {
-   "task":"coding",
-   "hours": 3
+   "task":"dancing",
+   "hours": 1
 }
 
 

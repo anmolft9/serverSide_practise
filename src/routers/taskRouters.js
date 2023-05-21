@@ -10,23 +10,19 @@ const router = express.Router();
 
 // console.log(router);
 
-import { insertTask } from "../model/TaskModel.js";
+import { insertTask, getTask, getSingleTask } from "../model/TaskModel.js";
 
-router.get("/:_id?", (req, res, next) => {
+router.get("/:_id?", async (req, res, next) => {
   //   console.log("get");
   const { _id } = req.params;
-  //   console.log(_id);
 
-  let data = fakeDB;
-
-  const specData = fakeDB.filter((item) => item._id === +_id);
-  console.log(specData);
+  const result = _id ? await getSingleTask(_id) : await getTask();
 
   try {
     res.json({
       status: "success",
       message: "get route",
-      data,
+      result,
     });
   } catch (error) {
     error.status = 500;
