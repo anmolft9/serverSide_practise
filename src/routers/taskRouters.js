@@ -2,15 +2,12 @@ import express from "express";
 
 const router = express.Router();
 
-// let fakeDB = [
-//   { _id: 1, task: "dancing", hr: 1 },
-//   { _id: 2, task: "singing", hr: 2 },
-//   { _id: 3, task: "fucking", hr: 100 },
-// ];
-
-// console.log(router);
-
-import { insertTask, getTask, getSingleTask } from "../model/TaskModel.js";
+import {
+  insertTask,
+  getTask,
+  getSingleTask,
+  deleteTask,
+} from "../model/TaskModel.js";
 
 router.get("/:_id?", async (req, res, next) => {
   //   console.log("get");
@@ -57,14 +54,17 @@ router.patch("/", (req, res, next) => {
   }
 });
 
-router.delete("/", (req, res, next) => {
-  const { _id } = req.body;
-  let afterDeletion = fakeDB.filter((item) => item._id !== +_id);
+router.delete("/", async (req, res, next) => {
   try {
+    const { _id } = req.body;
+    console.log(_id);
+
+    const result = _id ? await deleteTask(_id) : console.log("Id Not Found");
+
     res.json({
       status: "success",
       message: "delete route",
-      afterDeletion,
+      result,
     });
   } catch (error) {
     error.status = 500;

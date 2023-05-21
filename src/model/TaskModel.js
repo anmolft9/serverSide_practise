@@ -9,3 +9,6 @@ export const getTask = () => {
 export const getSingleTask = (_id) => {
   return TaskSchema.findById(_id);
 };
+export const deleteTask = (_id) => {
+  return TaskSchema.findByIdAndDelete(_id);
+};

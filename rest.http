@@ -25,5 +25,5 @@ DELETE http://localhost:8000/api/v1/task/
 Content-Type: application/json
 
 {
-    "_id": 1
+    "_id": "646a2ac495fd33c01d21623e"
 }
