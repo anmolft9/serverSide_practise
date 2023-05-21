@@ -11,8 +11,8 @@ POST http://localhost:8000/api/v1/task
 Content-Type: application/json
 
 {
-   "task":"blowjob",
-   "hr": 1
+   "task":"coding",
+   "hours": 3
 }
 
 

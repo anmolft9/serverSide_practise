@@ -2,13 +2,15 @@ import express from "express";
 
 const router = express.Router();
 
-let fakeDB = [
-  { _id: 1, task: "dancing", hr: 1 },
-  { _id: 2, task: "singing", hr: 2 },
-  { _id: 3, task: "fucking", hr: 100 },
-];
+// let fakeDB = [
+//   { _id: 1, task: "dancing", hr: 1 },
+//   { _id: 2, task: "singing", hr: 2 },
+//   { _id: 3, task: "fucking", hr: 100 },
+// ];
 
 // console.log(router);
+
+import { insertTask } from "../model/TaskModel.js";
 
 router.get("/:_id?", (req, res, next) => {
   //   console.log("get");
@@ -32,15 +34,14 @@ router.get("/:_id?", (req, res, next) => {
   }
 });
 
-router.post("/", (req, res, next) => {
+router.post("/", async (req, res, next) => {
+  const insertData = await insertTask(req.body);
+
   try {
-    console.log(req.body);
-    console.log(fakeDB);
-    fakeDB.push(req.body);
     res.json({
       status: "success",
       message: "post route",
-      fakeDB,
+      insertData,
     });
   } catch (error) {
     error.status = 500;
