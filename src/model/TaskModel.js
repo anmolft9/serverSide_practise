@@ -12,3 +12,6 @@ export const getSingleTask = (_id) => {
 export const deleteTask = (_id) => {
   return TaskSchema.findByIdAndDelete(_id);
 };
+export const updateTask = (_id) => {
+  return TaskSchema.findByIdAndUpdate(_id, { type: "bad" }, { new: true });
+};

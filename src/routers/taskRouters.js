@@ -7,6 +7,7 @@ import {
   getTask,
   getSingleTask,
   deleteTask,
+  updateTask,
 } from "../model/TaskModel.js";
 
 router.get("/:_id?", async (req, res, next) => {
@@ -42,11 +43,15 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-router.patch("/", (req, res, next) => {
+router.patch("/", async (req, res, next) => {
   try {
+    const { _id } = req.body;
+    console.log(_id);
+    const result = await updateTask(_id);
     res.json({
       status: "success",
       message: "patch route",
+      result,
     });
   } catch (error) {
     error.status = 500;
